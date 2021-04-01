@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 
+
+
 type Quote = {
   content: string,
   author: string
 }
 
 class Quotes extends Component {
-  constructor(props: any) {
-  super(props);
-  this.state = {
-    loading: false,
+ readonly state = {
+    loading: true,
     quoteContent: "",
     quoteAuthor: ""
-  }
-
-  }
+ } 
 
   async componentDidMount() {
     const url: string = "https://api.quotable.io/random"
     const response = await fetch(url)
     const data: Quote = await response.json();
     this.setState(
-  {quoteContent: data.content, quoteAuthor: data.author})
-  console.log(this.state)
+      {loading: false,  quoteContent: data.content, quoteAuthor: data.author})
   }
 
   render() {
@@ -30,7 +27,8 @@ class Quotes extends Component {
   return(
     <div className="quotes">
     <h1>Hello from Quotes</h1>
-      </div>
+      {this.state.loading ? <h1>Loading</h1> : <h1>{this.state.quoteContent} by {this.state.quoteAuthor}</h1>}
+    </div>
   )
 
   }
