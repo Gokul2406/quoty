@@ -1,38 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-
+type QuoteRequest = {
+  results: []
+}
 
 type Quote = {
-  content: string,
-  author: string
+  content: "",
+  author: ""
 }
 
-class Quotes extends Component {
- readonly state = {
-    loading: true,
-    quoteContent: "",
-    quoteAuthor: ""
- } 
-
-  async componentDidMount() {
-    const url: string = "https://api.quotable.io/random"
+class Quotes extends React.Component {
+  readonly state = {
+    dataContent: [],
+  }
+ async componentDidMount() {
+    const url: string = "https://api.quotable.io/quotes"
     const response = await fetch(url)
-    const data: Quote = await response.json();
-    this.setState(
-      {loading: false,  quoteContent: data.content, quoteAuthor: data.author})
-  }
+    const data: QuoteRequest = await response.json();
+    this.setState({ dataContent: data.results, loading: false})
 
+ }
   render() {
+    const quoteTSX: any[] = [];
+    this.state.dataContent.forEach((c: Quote, i: any) => {
+      quoteTSX.push(
+        <div key={i}>
+          <h1>{c.content}</h1>
+          <p>{c.author}</p>
+        </div>
+      )
+    });
 
-  return(
-    <div className="quotes">
-    <h1>Hello from Quotes</h1>
-      {this.state.loading ? <h1>Loading</h1> : <h1>{this.state.quoteContent} by {this.state.quoteAuthor}</h1>}
-    </div>
-  )
-
-  }
+    return(
+      <div>
+        {quoteTSX}
+      </div>
+    )
+}
 
 }
 
-export default Quotes;
+export default Quotes
