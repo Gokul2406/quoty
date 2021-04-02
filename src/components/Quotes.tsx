@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/Quotes.css'
 
 type QuoteRequest = {
   results: []
@@ -25,14 +26,14 @@ class Quotes extends React.Component {
     this.state.dataContent.forEach((c: Quote, i: any) => {
       quoteTSX.push(
         <div key={i}>
-          <h1>{c.content}</h1>
+          <h1 className="quote-content">{c.content}</h1>
           <p>{c.author}</p>
         </div>
       )
     });
 
     return(
-      <div>
+      <div className="quotes">
         {quoteTSX}
       </div>
     )
