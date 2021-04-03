@@ -5,7 +5,9 @@ import Quotes from './components/Quotes';
 const App: React.FC = () => {
 
   return(
-  <Quotes />
+    <div className="app">
+    <Quotes />
+    </div>
   )
 
 }

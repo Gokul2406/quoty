@@ -33,8 +33,10 @@ class Quotes extends React.Component {
     });
 
     return(
+      <div className="quotes-container">
       <div className="quotes">
         {quoteTSX}
+      </div>
       </div>
     )
 }
