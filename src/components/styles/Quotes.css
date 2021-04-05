@@ -1,5 +1,5 @@
 body {
-  background-color: #a5d3f2;
+  background-color: #fafafa;
   position: sticky;
 }
 
@@ -7,9 +7,5 @@ body {
   font-family: 'Kiwi Maru', serif;
 }
 
-.quotes-container {
-  background-color: white;
-  max-width: 75%;
-  padding-left: 150px;
-  max-height: 25%;
-}
+
+
